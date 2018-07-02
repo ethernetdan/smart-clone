@@ -9,7 +9,7 @@ var Gitty = require('gitty');
 const gitAlreadyExists = 'already exists and is not an empty directory'
 
 function repoDir(base, info) {
-    return path.join(base, info.source, info.owner, info.name)
+    return path.join(base, info.resource, info.owner, info.name)
 }
 
 cli.parse({
