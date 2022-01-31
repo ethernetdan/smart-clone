@@ -9,7 +9,9 @@ var Gitty = require('gitty');
 const gitAlreadyExists = 'already exists and is not an empty directory'
 
 function repoDir(base, info) {
-    return path.join(base, info.resource, info.owner, info.name)
+    owner = info.owner.replace(/^(:)/,'')
+
+    return path.join(base, info.resource, owner, info.name)
 }
 
 cli.parse({
@@ -30,6 +32,7 @@ cli.main(function(args, options) {
 
     // clone repository
     url = info.toString(options.protocol)
+    url = url.replace('::',':');
     cli.info('Cloning "' + url + '" to "' + dst + '"...')
     Gitty.clone(dst, url, function(err) {
         if (err) {
